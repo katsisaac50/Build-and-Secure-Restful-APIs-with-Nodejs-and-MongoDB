@@ -1,9 +1,9 @@
 import * as Joi from 'joi';
-
+import Song from './song.model';
 export default{
   async create(req,res){
-    console.log(req.body);
-    const schema = Joi.object().keys({
+    try{
+      const schema = Joi.object().keys({
       title: Joi.string().required(),
       url: Joi.string().required(),
       rating: Joi.number()
@@ -16,6 +16,12 @@ export default{
     if(error && error.details){
       return res.status(400).json(error);
     }
-    return res.json(value);
+    const song = await Song.create(value);
+    return res.json(song);
+    }catch(err){
+      console.error(err);
+      return res.status(500).send(err);
+    }
+    
   }
 };
