@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import mongoosePaginate from'mongoose-paginate';
 
+
+const {Schema} = mongoose;
 const songSchema = new Schema({
   title: {
     type: String,
