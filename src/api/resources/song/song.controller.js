@@ -26,7 +26,7 @@ export default{
   },
   async findAll(req, res){
     try{
-      const songs = await Song.find();
+      const songs = await Song.paginate();
       return res.json(songs);
     }catch(err){
       console.error(err);
