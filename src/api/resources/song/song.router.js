@@ -7,4 +7,4 @@ songRouter
 .post(songController.create)
 .get(songController.findAll);
 songRouter.route('/:id')
-.get(csongController.findOne);
+.get(songController.findOne);

@@ -37,16 +37,19 @@ export default{
       console.error(err);
       return res.status(500).send(err);
     }
-  }
+  },
   async findOne(req, res){
     try{
       const{id} = req.params;
       const song = await Song.findById(id);
+      if(!song){
+        return res.status(404).json({err:'could not find song'});
+      }
       return res.json(song);
 
     }catch(err){
       console.error(err);
       return res.status(500).send(err);
     }
-  }
+  },
 };
