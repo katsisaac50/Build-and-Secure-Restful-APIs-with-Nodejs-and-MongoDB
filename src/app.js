@@ -14,7 +14,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(logger('dev'));
 
 app.use('/api',restRouter);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {explorer:true}))
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {explorer:true}));
 app.use((req, res, next) => {
   const error = new Error('Not found');
   error.message = 'Invalid route';
