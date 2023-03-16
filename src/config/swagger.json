@@ -106,6 +106,20 @@
             }
           }
         }
+      },
+      "delete":{
+        "tags":["Songs"],
+        "summary":"API Endpoint to delete single song",
+        "description":"delete a song from the database",
+        "produces":["application/json"],
+        "responses":{
+          "200":{
+            "description":"Song has been deleted",
+            "schema":{
+              "$ref":"#definitions/Song"
+            }
+          }
+        }
       }
       
     }
