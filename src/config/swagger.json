@@ -120,6 +120,31 @@
             }
           }
         }
+      },
+      "put":{
+        "tags":["Songs"],
+        "summary":"API Endpoint for create Song",
+        "description":"update Song in database",
+        "parameters":[
+          {
+            "name":"song",
+            "description":"Song params to update song",
+            "in":"body",
+            "schema":{
+              "$ref":"#definitions/Updatesong"
+            }
+
+          }
+        ],
+        "produces":["application/json"],
+        "responses":{
+          "200":{
+            "description":"Song has updated",
+            "schema":{
+              "$ref":"#definitions/Song"
+            }
+          }
+        }
       }
       
     }
@@ -166,6 +191,21 @@
           "type":"integer"
         }
 
+      }
+
+    },
+    "Updatesong":{
+      "properties":{
+        "title":{
+          "type":"string"
+        },
+        "url":{
+          "type":"string"
+        },
+        "rating":{
+          "type":"integer",
+          "format": "Int32"
+        }
       }
 
     }
