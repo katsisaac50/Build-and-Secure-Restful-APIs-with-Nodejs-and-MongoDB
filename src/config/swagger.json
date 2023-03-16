@@ -51,7 +51,63 @@
             }
           }
         }
+      },
+      "get":{
+        "tags":["Songs"],
+        "summary":"API Endpoint to find all Songs",
+        "description":"Find all songs from the database",
+        "parameters":[
+          {
+            "name":"page",
+            "type":"integer",
+            "description":"Define the page index for the record",
+            "in":"query"
+          },
+          {
+            "name":"perPage",
+            "type":"integer",
+            "description":"Define the limit for the records i.e 10",
+            "in":"query"
+
+          }
+        ],
+        "produces":["application/json"],
+        "responses":{
+          "200":{
+            "description":"All the songs",
+            "schema":{
+              "$ref":"#definitions/Song"
+            }
+          }
+        }
       }
+    },
+    "/songs/{id}":{
+      "parameters":[
+        {
+          "name":"id",
+          "in":"path",
+          "required":"true",
+          "description":"id of the song",
+          "type":"string"
+          
+        }
+      ],
+      "get":{
+        "tags":["Songs"],
+        "summary":"API Endpoint to find single song",
+        "description":"Find a song from the database",
+        "produces":["application/json"],
+        "responses":{
+          "200":{
+            "description":"Song has been found",
+            "schema":{
+              "$ref":"#definitions/Song"
+            }
+          }
+        }
+      }
+      
     }
   },
 
@@ -72,6 +128,30 @@
           "type":"integer",
           "format": "Int32"
         }
+      }
+
+    },
+    "Songs":{
+      
+      "properties":{
+        "docs":{
+          "type":"array",
+          "$ref":"#definitions/Song"
+        },
+        "total":{
+          "type":"integer"
+        },
+        "pages":{
+          "type":"integer"
+        },
+        "limit":{
+          "type":"integer"
+          
+        },
+        "page":{
+          "type":"integer"
+        }
+
       }
 
     }
