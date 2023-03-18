@@ -13,7 +13,10 @@
   "basePath": "/api",
   "tag":[{
     "name":"Songs",
-    "description":"API for Songs Endpoints"}
+    "description":"API for Songs Endpoints"},
+    {
+      "name":"Users",
+      "description":"API for Users Endpoints"}
   ],
   "schemes": [
     "http"
@@ -25,6 +28,34 @@
     "application/json"
   ],
   "paths":{
+    "/users/signup":{
+      "post":{
+        "tags":["Users"],
+        "summary":"API Endpoint for create User",
+        "description":"Create new User in database",
+        "parameters":[
+          {
+            "name":"user",
+            "description":"User params to register new user",
+            "in":"body",
+            "required":"true",
+            "schema":{
+              "$ref":"#definitions/User"
+            }
+
+          }
+        ],
+        "produces":["application/json"],
+        "responses":{
+          "200":{
+            "description":"New user has Created",
+            "schema":{
+              "$ref":"#definitions/SignupRsp"
+            }
+          }
+        }
+      }
+    },
     "/songs":{
       "post":{
         "tags":["Songs"],
@@ -151,6 +182,30 @@
   },
 
   "definitions":{
+    "SignupRsp":{
+      "properties":{
+        "success":{"type":"boolean"}
+      }
+    },
+    "User":{
+      "required":["first","lastName","email","password"],
+      "properties":{
+        "firstName":{
+          "type":"string"
+        },
+        "lastName":{
+          "type":"string"
+        },
+        "email":{
+          "type":"string"
+        },
+        "password":{
+          "type":"string"
+        }
+
+      }
+
+    },
     "Song":{
       "required":["title","url"],
       "properties":{
