@@ -6,6 +6,9 @@ export default{
     const salt = bcrypt.genSaltSync(10);
     return bcrypt.hashSync(plainText, salt);
   },
+  comparePassword(plainText, encryptPassword){
+    return bcrypt.compareSync(plainText,encryptPassword);
+  },
   validateSignup(body){
     const schema =Joi.object().keys({
       firstName: Joi.string().required(),
@@ -21,5 +24,18 @@ export default{
   }
   return {value};
 
+  },
+  validateLogin(body){
+    const schema =Joi.object().keys({
+      email: Joi.string()
+      .email()
+      .required(),
+      password: Joi.string().required(),
+    });
+    const {value, error} = schema.validate(body);
+  if(error && error.details){
+    return {error};
+  }
+  return {value};
   }
 };

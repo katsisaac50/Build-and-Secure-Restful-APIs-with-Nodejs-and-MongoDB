@@ -56,6 +56,34 @@
         }
       }
     },
+    "/users/login":{
+      "post":{
+        "tags":["Users"],
+        "summary":"API Endpoint to login his/her account",
+        "description":"Login user",
+        "parameters":[
+          {
+            "name":"user",
+            "description":"User params to login",
+            "in":"body",
+            "required":"true",
+            "schema":{
+              "$ref":"#definitions/UserLogin"
+            }
+
+          }
+        ],
+        "produces":["application/json"],
+        "responses":{
+          "200":{
+            "description":"New user has loggedIn",
+            "schema":{
+              "$ref":"#definitions/UserLoginRsp"
+            }
+          }
+        }
+      }
+    },
     "/songs":{
       "post":{
         "tags":["Songs"],
@@ -71,6 +99,16 @@
               "$ref":"#definitions/Song"
             }
 
+          },
+          {
+            "name":"authorization",
+            "description":"Access token to authorize the user",
+            "in":"header",
+            "type":"string",
+            "required":"true",
+            "schema":{
+              "$ref":"#definitions/Song"
+            }
           }
         ],
         "produces":["application/json"],
@@ -100,6 +138,16 @@
             "description":"Define the limit for the records i.e 10",
             "in":"query"
 
+          },
+          {
+            "name":"authorization",
+            "description":"Access token to authorize the user",
+            "in":"header",
+            "type":"string",
+            "required":"true",
+            "schema":{
+              "$ref":"#definitions/Song"
+            }
           }
         ],
         "produces":["application/json"],
@@ -122,6 +170,16 @@
           "description":"id of the song",
           "type":"string"
           
+        },
+        {
+          "name":"authorization",
+          "description":"Access token to authorize the user",
+          "in":"header",
+          "type":"string",
+          "required":"true",
+          "schema":{
+            "$ref":"#definitions/Song"
+          }
         }
       ],
       "get":{
@@ -206,6 +264,26 @@
       }
 
     },
+    "UserLogin":{
+      "required":["email","password"],
+      "properties":{
+        "email":{
+          "type":"string"
+        },
+        "password":{
+          "type":"string"
+        }
+      }
+    },
+
+    "UserLoginRsp":{
+      "properties":{
+        "token":{
+          "type":"string"
+        }
+      }
+    },
+
     "Song":{
       "required":["title","url"],
       "properties":{
