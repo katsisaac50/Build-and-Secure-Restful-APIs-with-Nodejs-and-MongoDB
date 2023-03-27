@@ -259,10 +259,11 @@
         },
         "password":{
           "type":"string"
+        },
+        "role":{
+          "type":"integer"
         }
-
       }
-
     },
     "UserLogin":{
       "required":["email","password"],

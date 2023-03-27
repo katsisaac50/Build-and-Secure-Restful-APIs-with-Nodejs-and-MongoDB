@@ -1,24 +1,29 @@
 import mongoose from 'mongoose';
-import mongoosePaginate from'mongoose-paginate';
+import mongoosePaginate from 'mongoose-paginate';
 
 
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 const songSchema = new Schema({
   title: {
     type: String,
-    required:[true,'Song must have title'],
+    required: [true, 'Song must have title'],
   },
-  url:{
-    type:String,
-    required:[true, 'Song must have url'],
+  url: {
+    type: String,
+    required: [true, 'Song must have url'],
   },
-  rating:{
-    type:Number,
-    default:0,
-    max:5,
+  rating: {
+    type: Number,
+    default: 0,
+    max: 5,
+  },
+  artist: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   },
 });
 
 songSchema.plugin(mongoosePaginate);
 
-export default mongoose.model('Song',songSchema);
+export default mongoose.model('Song', songSchema);

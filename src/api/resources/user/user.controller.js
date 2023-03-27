@@ -1,10 +1,13 @@
 import userService from "./user.service";
 import User from "./user.model";
 import jwt from "../../helpers/jwt";
+import  {STANDARD_ROLE}from "./user.model";
+
 
 export default{
   async signup(req, res){
-    try{
+
+        try{
       const {value, error} = userService.validateSignup(req.body);
     if(error){
       return res.status(400).json(error);
